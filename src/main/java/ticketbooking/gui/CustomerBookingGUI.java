@@ -23,6 +23,10 @@ import ticketbooking.movieinfo.MovieShow;
 import ticketbooking.movieinfo.MovieShowWithShowRoom;
 import ticketbooking.movieinfo.showtime.ShowTime;
 
+/**
+ * The CustomerBookingGUI class represents the graphical user interface for the customer booking system.
+ * It allows users to search for movies and book seats for a selected movie show.
+ */
 public class CustomerBookingGUI {
     private JFrame frame;
     private JTextField searchMovieTitleField;
@@ -36,6 +40,10 @@ public class CustomerBookingGUI {
     private JLabel bookPriceField;
     private JTextArea bookingStatusArea;
 
+    /**
+     * The CustomerBookingGUI class represents the graphical user interface for the customer booking system.
+     * It provides functionality for searching movies and booking seats.
+     */
     public CustomerBookingGUI() {
         frame = new JFrame("Customer Booking System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,6 +62,13 @@ public class CustomerBookingGUI {
         frame.setVisible(true);
     }
 
+    /**
+     * Creates and returns a JPanel that contains the search movie functionality.
+     * This panel allows the user to search for a movie by title and displays the search results.
+     * The search results include movie details and an option to book the movie.
+     *
+     * @return a JPanel with the search movie functionality
+     */
     private JPanel createSearchMoviePanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -105,6 +120,13 @@ public class CustomerBookingGUI {
         return panel;
     }
 
+    /**
+     * Creates and returns a JPanel for booking a seat.
+     * The panel contains input fields for movie title, show time, show room, row, column, and user ID.
+     * It also includes a button to book the seat and a text area to display the booking status.
+     *
+     * @return the JPanel for booking a seat
+     */
     private JPanel createBookSeatPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -175,6 +197,10 @@ public class CustomerBookingGUI {
         return panel;
     }
 
+    /**
+     * The entry point of the application.
+     * Initializes the CustomerBookingGUI and runs it on the Event Dispatch Thread.
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new CustomerBookingGUI());
     }

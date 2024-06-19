@@ -1,6 +1,5 @@
 package ticketbooking.movieinfo;
 
-import javax.swing.JOptionPane;  
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,8 +8,22 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
+/**
+ * The MovieManager class is responsible for managing movie-related operations such as adding movies, finding movies,
+ * adding movie shows with showrooms, retrieving movies, retrieving movie shows, and validating movie show with showroom.
+ * It also provides a method to display exceptions using a message dialog.
+ */
 public class MovieManager {
 
+    /**
+     * Adds a new movie to the movie list.
+     *
+     * @param movie the movie to be added
+     * @throws IOException if an I/O error occurs while creating or writing to the file
+     * @throws MovieExistException if the movie already exists in the movie list
+     */
     public static void addMovie(Movie movie) {
         try {
             // Append the new movie details to the file
@@ -40,6 +53,12 @@ public class MovieManager {
         }
     }
 
+    /**
+     * Finds a movie with the specified title.
+     * 
+     * @param title the title of the movie to find
+     * @return the Movie object with the specified title, or null if no such movie is found
+     */
     public static Movie findMovie(String title) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("target/movielist.txt"));
@@ -58,6 +77,14 @@ public class MovieManager {
         return null;
     }
 
+    /**
+     * Adds a movie show with show room to the system.
+     * If the movie show file already exists, the method reads the existing shows, adds the new show, and sorts them by show time.
+     * If the movie show file does not exist, the method creates a new file and adds the show to it.
+     * The method then writes the shows to the file.
+     *
+     * @param movieShowWithShowRoom The movie show with show room to be added.
+     */
     public static void addMovieShowWithShowRoom(MovieShowWithShowRoom movieShowWithShowRoom) {
         try {
             ArrayList<MovieShowWithShowRoom> shows = new ArrayList<>();
@@ -94,6 +121,11 @@ public class MovieManager {
         }
     }
 
+    /**
+     * Retrieves a list of movies from a text file and returns them as an ArrayList.
+     *
+     * @return An ArrayList of Movie objects representing the movies retrieved from the file.
+     */
     public static ArrayList<Movie> getMovies() {
         ArrayList<Movie> movies = new ArrayList<>();
         try {
@@ -113,6 +145,12 @@ public class MovieManager {
         return movies;
     }
 
+    /**
+     * Retrieves a list of movie shows with their corresponding show rooms for a given movie.
+     *
+     * @param movie The movie for which to retrieve the movie shows.
+     * @return An ArrayList of MovieShowWithShowRoom objects representing the movie shows and their show rooms.
+     */
     public static ArrayList<MovieShowWithShowRoom> getMovieShows(Movie movie) {
         ArrayList<MovieShowWithShowRoom> movieShows = new ArrayList<>();
         try {
@@ -134,6 +172,12 @@ public class MovieManager {
         return movieShows;
     }
 
+    /**
+     * Validates if a movie show with show room exists.
+     * 
+     * @param movieShowWithShowRoom the movie show with show room to validate
+     * @return true if the movie show with show room exists, false otherwise
+     */
     public static boolean validateMovieShowWithShowRoom(MovieShowWithShowRoom movieShowWithShowRoom) {
         ArrayList<MovieShowWithShowRoom> shows = getMovieShows(movieShowWithShowRoom.getMovie());
         for (MovieShowWithShowRoom show : shows) {
@@ -144,8 +188,13 @@ public class MovieManager {
         return false;
     }
 
+    /**
+     * Displays an error message dialog with the given exception message.
+     *
+     * @param e the exception to display the message for
+     */
     public static void showException(Exception e) {
         JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); 
-}
+    }
 }
 

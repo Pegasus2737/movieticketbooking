@@ -15,8 +15,18 @@ import ticketbooking.showroom.ShowRoom;
 import ticketbooking.showroom.ShowRoomDoesntExistException;
 import ticketbooking.showroom.ShowRoomManager;
 
+/**
+ * The SeatManager class is responsible for managing the seat chart and booking seats for a movie show.
+ * It provides methods to add a seat chart, check seat availability, and book seats.
+ */
 public class SeatManager {
 
+    /**
+     * Adds a seat chart for a given movie show with show room.
+     * 
+     * @param movieShowWithShowRoom the movie show with show room object
+     * @throws ShowRoomDoesntExistException if the show room doesn't exist
+     */
     public static void addSeatChart(MovieShowWithShowRoom movieShowWithShowRoom) {
         try {
             String movieinfoString = movieShowWithShowRoom.getTitle() + "-" + movieShowWithShowRoom.getRoomString() + "-" + movieShowWithShowRoom.getShowTime().toString();
@@ -43,6 +53,14 @@ public class SeatManager {
         }
     }
 
+    /**
+     * Checks if a seat is available in a specific movie show and location.
+     *
+     * @param movieShowWithShowRoom The movie show and show room information.
+     * @param row The row number of the seat.
+     * @param column The column number of the seat.
+     * @return True if the seat is available, false otherwise.
+     */
     public static boolean isSeatAvailable(MovieShowWithShowRoom movieShowWithShowRoom, int row, int column) {
         try {
             ShowRoom showRoom = ShowRoomManager.findShowRoom(movieShowWithShowRoom.getRoomString());
@@ -81,6 +99,18 @@ public class SeatManager {
         return false;
     }
 
+    /**
+     * Books a seat for a given movie show in a show room.
+     *
+     * @param movieShowWithShowRoom the movie show with show room information
+     * @param row the row number of the seat
+     * @param column the column number of the seat
+     * @param userid the ID of the user booking the seat
+     * @return the authentication code for the booked seat
+     * @throws IllegalArgumentException if the movie show with show room is null, invalid, or if the user ID is null or empty
+     * @throws SeatDoesntExistException if the specified seat does not exist in the show room
+     * @throws SeatAlreadyBookedException if the specified seat is already booked
+     */
     public static int bookSeat(MovieShowWithShowRoom movieShowWithShowRoom, int row, int column, String userid) {
         try {
             // Validate the input
@@ -141,10 +171,22 @@ public class SeatManager {
         return -1;
     }
 
+    /**
+     * Displays an error message dialog with the given exception message.
+     *
+     * @param e the exception to display the message for
+     */
     public static void showException(Exception e) {
         JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * The main method serves as the entry point for the program.
+     * It demonstrates the usage of the SeatManager class by creating a MovieShowWithShowRoom object,
+     * checking seat availability, booking a seat, and checking seat availability again.
+     *
+     * @param args The command-line arguments passed to the program.
+     */
     public static void main(String[] args) { //driver code
         MovieShow movieShow = new MovieShow("Hello", 90, "2024-6-16-19-00", 50);
         MovieShowWithShowRoom movieShowWithShowRoom = new MovieShowWithShowRoom(movieShow, "Room1");

@@ -23,6 +23,10 @@ import ticketbooking.movieinfo.MovieShowWithShowRoom;
 import ticketbooking.movieinfo.showtime.ShowTime;
 import ticketbooking.showroom.*;
 
+/**
+ * The EmployeeGUI class represents the graphical user interface for the employee management system.
+ * It allows employees to manage show rooms, movies, and show times.
+ */
 public class EmployeeGUI {
     private JFrame frame;
     private JTextField movieTitleField;
@@ -35,6 +39,10 @@ public class EmployeeGUI {
     private JTextArea ticketPriceField;
     private JTextArea showTimeOutputArea;
 
+    /**
+     * The EmployeeGUI class represents the graphical user interface for the Employee Management System.
+     * It provides a tabbed interface for managing showrooms, movies, and showtimes.
+     */
     public EmployeeGUI() {
         frame = new JFrame("Employee Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,6 +63,11 @@ public class EmployeeGUI {
         frame.setVisible(true);
     }
 
+    /**
+     * Creates and returns a JPanel that contains input fields and buttons for adding a show room and setting its availability.
+     * 
+     * @return the created JPanel
+     */
     private JPanel createShowRoomPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -102,6 +115,11 @@ public class EmployeeGUI {
         return panel;
     }
 
+    /**
+     * Creates a JPanel for movie input and output.
+     * 
+     * @return the created JPanel
+     */
     private JPanel createMoviePanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -152,6 +170,13 @@ public class EmployeeGUI {
         return panel;
     }
 
+    /**
+     * Creates and returns a JPanel that contains the user interface for adding a show time.
+     * The panel includes input fields for selecting a movie, entering a show time, selecting a show room,
+     * entering a ticket price, and a button to add the show time.
+     *
+     * @return a JPanel containing the show time input fields and button
+     */
     private JPanel createShowTimePanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -219,6 +244,10 @@ public class EmployeeGUI {
         return panel;
     }
 
+    /**
+     * The entry point of the application.
+     * Initializes the EmployeeGUI class and starts the Swing event dispatch thread.
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new EmployeeGUI());
     }

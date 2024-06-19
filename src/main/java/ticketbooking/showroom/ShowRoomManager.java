@@ -15,8 +15,20 @@ import ticketbooking.movieinfo.MovieManager;
 import ticketbooking.movieinfo.MovieShow;
 import ticketbooking.movieinfo.MovieShowWithShowRoom;
 
+/**
+ * The ShowRoomManager class is responsible for managing showrooms and their operations,
+ * such as adding showrooms, setting availability, finding showrooms, and retrieving a list of showrooms.
+ * It also provides methods to add movie shows to showrooms and handle exceptions.
+ */
 public class ShowRoomManager {
 
+    /**
+     * Adds a new show room to the system.
+     *
+     * @param showRoom the ShowRoom object representing the show room to be added
+     * @throws IOException if an I/O error occurs while accessing the file
+     * @throws ShowRoomExistException if the show room already exists in the system
+     */
     public static void addShowRoom(ShowRoom showRoom) {
         try {
             // Append the new show room details to the file
@@ -44,6 +56,12 @@ public class ShowRoomManager {
         }
     }
 
+    /**
+     * Sets the availability of a show room.
+     *
+     * @param showRoom The show room for which the availability needs to be set.
+     * @param available The availability status to be set (true for available, false for unavailable).
+     */
     public static void setShowRoomAvailability(ShowRoom showRoom, Boolean available) {
         try {
             // Read the showroom list from the file
@@ -72,6 +90,12 @@ public class ShowRoomManager {
         }
     }
 
+    /**
+     * Finds a ShowRoom object based on the given room name.
+     * 
+     * @param roomName the name of the room to search for
+     * @return the ShowRoom object if found, or null if not found
+     */
     public static ShowRoom findShowRoom(String roomName) {
         try {
             // Read the showroom list from the file
@@ -108,6 +132,11 @@ public class ShowRoomManager {
         return null;
     }
 
+    /**
+     * Retrieves a list of showrooms from a file and returns them as an ArrayList.
+     *
+     * @return An ArrayList of ShowRoom objects containing the showrooms read from the file.
+     */
     public static ArrayList<ShowRoom> getShowRooms() {
         ArrayList<ShowRoom> showRooms = new ArrayList<>();
         try {
@@ -146,6 +175,12 @@ public class ShowRoomManager {
         return showRooms;
     }
 
+    /**
+     * Adds a movie show with show room to the show room manager.
+     * 
+     * @param movieShowWithShowRoom the movie show with show room to be added
+     * @throws ShowRoomDoesntExistException if the show room doesn't exist
+     */
     public static void addShow(MovieShowWithShowRoom movieShowWithShowRoom) {
         try {
             // Read the showroom list from the file
@@ -186,10 +221,21 @@ public class ShowRoomManager {
     }
 
 
+    /**
+     * Displays an error message dialog with the given exception's message.
+     *
+     * @param e the exception to display the message for
+     */
     public static void showException(Exception e) {
         JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * The main method is the entry point of the program.
+     * It contains driver codes to test all the methods of the ShowRoomManager class.
+     * 
+     * @param args The command-line arguments passed to the program.
+     */
     public static void main(String[] args) { //driver codes, test all methods
         ShowRoom showRoom = new ShowRoom("Room1", 10, 10);
         addShowRoom(showRoom);
